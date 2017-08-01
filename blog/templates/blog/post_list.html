@@ -1,24 +1,56 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+<!--첫번째 줄에 작성하는 것이. 필수 -->
 <html>
     <head>
+        <!-- 폰트 -->
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <!-- 부트스트랩 -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <title>yacha's blog</title>
     </head>
     <body>
-        <div>
-            <h1><a href="">Django Girls Blog</a></h1>
+        <div class= "page-header">
+            <h2><a href="/">Welcome yacha's univ-</a></h2>
         </div>
+<!--
+        <div class="post">
 
-        <div>
-            <p>published: 20170801 09:30</p>
-            <h2><a href="">My first post</a></h2>
+            <h1><a href="">My first post</a></h1>
             <p>안녕~ 은지야 </p>
+             <p>published: 20170801 09:30</p>
         </div>
 
         {%for post in posts%}
-        <div>
-        <p>published: {{ post.published_date }}</p>
+        <div class="post">
+
         <h1><a href="">{{ post.title }}</a></h1>
         <p>{{ post.text|linebreaksbr }}</p>
+            <p>published: {{ post.published_date }}</p>
         </div>
         {%endfor%}
+        -->
+ <!--############################################################################# -->
+      <!--  <p>테스트 기점</p>-->
+    <div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+     {% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+    {% endblock %}
+        </div>
+    </div>
+</div>
     </body>
 </html>
