@@ -9,14 +9,29 @@
         <!-- CSS -->
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <title>yacha's Page</title>
+        <script>
+            function goLogin(){
+            alert("!")
+            href.location ="http://127.0.0.1:8000/admin/login/?next=/admin/"
+            }
+        </script>
     </head>
 <body>
 
     <div class="page-header">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated %} <!-- 로긴하면 보임 -->
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
-        <h1><a href="/">yacha's space</a></h1>
+        <h1><a href="/">yacha's space</a>{% if user.is_authenticated %} <!-- 로긴하면 보임 -->
+        welcome
+        {% else %}<!-- 로긴안됬을때 보임 -->
+        <div>
+        <!--ID: <input type="text" class="top-login" id = "userId" >-->
+        <!--PW: <input type="text" class="top-login" id = "userPw" >-->
+        <input type="button" class="top-login" id="goLoginBt" onclick="goLogin()" value="로그인">
+        </div></h1>
+
+        {% endif %}
     </div>
     <div class="content container">
         <div class="row">
