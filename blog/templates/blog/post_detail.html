@@ -1,37 +1,17 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}<!-- 필수 -->
-<html>
-    <head>
-        <!-- 폰트 -->
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <!-- 부트스트랩 -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <!-- CSS -->
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <title>yacha's Page</title>
-    </head>
-<body>
-    <div class="page-header">
-        <h1><a href="/">yacha's space</a></h1>
-    </div>
-    <div class="content container">
-        <p>detail view....</p>
-        <div class="row">
-            <div class="col-md-8">
-            {% block content %}
-                <div class="post">
-            {% if post.published_date %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
             </div>
-            {% endif %}
-             <h1>{{ post.title }}</h1>
-             <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-            {% endblock %}
-            </div>
-        </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
     </div>
-</body>
-</html>
+{% endblock %}
