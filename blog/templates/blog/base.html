@@ -12,7 +12,10 @@
         <script>
             function goLogin(){
             alert("!")
-            href.location ="http://127.0.0.1:8000/admin/login/?next=/admin/"
+            location.href ="./admin"
+            }
+            function goAdm(){
+            location.href ="./admin"
             }
         </script>
     </head>
@@ -21,6 +24,7 @@
     <div class="page-header">
         {% if user.is_authenticated %} <!-- 로긴하면 보임 -->
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <input id = goAdm value="admin_menu" type="button" onclick="goAdm()">
         {% endif %}
         <h1><a href="/">yacha's space</a>{% if user.is_authenticated %} <!-- 로긴하면 보임 -->
         welcome
@@ -33,6 +37,7 @@
 
         {% endif %}
     </div>
+     {% if user.is_authenticated %} <!-- 로긴하면 보임 -->
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
@@ -41,5 +46,10 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div>
+        <p>who are you ? show me the Key.</p>
+    </div>
+    {% endif %}
 </body>
 </html>
