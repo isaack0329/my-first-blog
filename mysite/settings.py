@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yacha$default',
         'HOST': 'yacha.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
+        'PORT': '446',
         'USER': 'yacha',
         'PASSWORD': '12345678aa'
     }
